@@ -1,5 +1,6 @@
 import express from "express";
 const router = express.Router();
+import controller from "./controller.js";
 
 // Ma liste CRUD ainsi que chaque méthode du controller adapté à chaque opération.
 router.get('/cards', controller.getAllCards);

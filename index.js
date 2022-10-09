@@ -3,11 +3,14 @@
 import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
+import cors from "./app/middlewares/cors.js";
 import router from "./app/router.js";
-import "./mongo.js";
+import "./app/mongo.js";
 
 // Je crée mon app express
 const app = express();
+
+app.use(cors);
 
 // Je dis à mon app d'utiliser mon router
 app.use(router);

@@ -10,7 +10,7 @@ const memoryDb = mongoose.connection;
 memoryDb.on('error', (err) => {
   console.error(`🚫 → ${err.message}`);
 });
-// Je vérifie que ma connection à ma DB
+// J'envoie un log pour confirmer que ma connexion à la DB est OK
 memoryDb.once("open", () => {
   console.log("MongoDB connexion OK");
 });

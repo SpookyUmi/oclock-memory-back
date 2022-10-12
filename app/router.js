@@ -5,7 +5,7 @@ import controller from "./controller.js";
 // Ma liste CRUD ainsi que chaque méthode du controller adapté à chaque opération.
 router.get('/cards', controller.getAllCards);
 router.get('/scores', controller.getBestScores);
-router.post('scores', controller.saveScore);
+router.post('/scores', controller.saveScore);
 
 
 // Mon middleware 404

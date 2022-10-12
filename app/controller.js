@@ -13,7 +13,7 @@ const controller = {
         next();
       } else {
         // Si j'ai bien toutes mes cartes, je les renvoie
-        res.status(200).json({ data: cards });
+        res.status(200).json({ cards });
       }
     } catch (err) {
       // Dans le cas ou quelque chose se passe mal, on arrive dans ce block.
@@ -31,7 +31,7 @@ const controller = {
         // 1. Je range les temps par ordre croissant avec sort() (attention : sort() mutate l'array)
         // 2. On veut les meilleurs temps, donc ici les 3 premiers éléments. Je dis à ma méthode slice() de sélectionner les élément entre l'index 0 et l'index 3.
         const bestScores = scores.sort().slice(0, 3);
-        res.status(200).json({ data: bestScores });
+        res.status(200).json({ bestScores });
       }
     } catch (err) {
       next(err);
@@ -39,12 +39,17 @@ const controller = {
   },
   saveScore: async (req, res, next) => {
     try {
-      const newScore = await Score.create({ duration: req.body.newScore });
-      if (!newScore) {
-        next();
-      } else {
-        res.status(200).json({ data: newScore });
-      }
+      console.log(req.body)
+      const minutes = Math.floor(req.body.score / 60);
+      const seconds = req.body.score - minutes * 60
+      console.log(`Ton score : ${minutes}min ${seconds}s`);
+      //const newScore = await Score.create({ duration: req.body.score });
+      // if (!newScore) {
+      //   next();
+      // } else {
+      //   res.status(200).json({ newScore });
+      // }
+      res.status(200).json({ score: `${minutes}min ${seconds}s` })
     } catch (err) {
       next(err);
     }

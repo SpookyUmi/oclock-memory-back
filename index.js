@@ -10,6 +10,8 @@ import "./app/mongo.js";
 // Je crée mon app express
 const app = express();
 
+app.use(express.json());
+
 app.use(cors);
 
 // Je dis à mon app d'utiliser mon router

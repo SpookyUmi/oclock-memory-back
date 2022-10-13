@@ -1,5 +1,6 @@
 import Card from "./models/Card.js";
 import Score from "./models/Score.js";
+import formatDisplay from "./utils/formatDisplay.js";
 
 // Mon controller avec toutes ses méthodes.
 const controller = {
@@ -35,14 +36,8 @@ const controller = {
             return a - b;
           })
           .slice(0, 3);
-        // On convertit le format des scores pour plus de lisibilité une fois sur le front :
-        const formattedBestScores = bestScores.map((score) => {
-          const minutes = Math.floor(score / 60); // On calcule les minutes
-          const seconds = score - minutes * 60 // puis les secondes
-          if (!minutes) return `${seconds}s`; // s'il y a moins d'une minute, on ne laisse que les secondes
-          if (!seconds) return `${minutes}min`; // s'il y a moins d'une minute, on ne laisse que les secondes
-          return `${minutes}min ${seconds}s`;
-        })
+        // On convertit le format des scores pour plus de lisibilité une fois sur le front
+        const formattedBestScores = bestScores.map((score) => formatDisplay(score))
         // j'envoie mes scores sur le front.
         res.status(200).json({ formattedBestScores: formattedBestScores });
       }
@@ -57,12 +52,7 @@ const controller = {
       if (!newScore) {
         next();
       } else {
-        let formattedScore;
-        const minutes = Math.floor(newScore.duration / 60); // On calcule les minutes
-        const seconds = newScore.duration - minutes * 60 // puis les secondes
-        if (!minutes) formattedScore = `${seconds}s`; // s'il y a moins d'une minute, on ne laisse que les secondes
-        if (!seconds) formattedScore = `${minutes}min`; // s'il y a moins d'une minute, on ne laisse que les secondes
-        formattedScore = `${minutes}min ${seconds}s`;
+        const formattedScore = formatDisplay(newScore.duration);
         res.status(200).json({ formattedScore });
       }
     } catch (err) {

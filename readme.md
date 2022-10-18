@@ -9,3 +9,5 @@ Pour ce faire, j'ai utilisé [Atlas](https://www.mongodb.com/atlas/database), o�
 ### Hébergement sur Render
 
 J'ai hébergé mon serveur back sur Render, une des rares plateformes où l'on trouve encore une option gratuite. Mais cela vient avec son lot de désagrément : Render met 30sec à se réveiller après un certain temps.
+
+UPDATE 18/10 10h : [RENDER STATUS](https://status.render.com/) Render semble avoir des problèmes avec leur serveur.
